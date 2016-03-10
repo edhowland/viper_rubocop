@@ -7,9 +7,10 @@ def load_cop_json buffer, path
   loaded['files'].each do |file|
     buffer.ins "#{file['path']}\n" 
     file['offenses'].each do |offense|
-      buffer.ins offense.inspect
-      buffer.ins "\n"
+      buffer.ins "#{offense['message']}:L:#{offense['location']['line']}:C:#{offense['location']['column']}:#{offense['cop_name']}\n"
     end
   end
+
+  buffer.beg
 end
 
