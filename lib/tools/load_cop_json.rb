@@ -1,6 +1,30 @@
 # load_cop_json.rb - method load_cop_json - loads JSON format result of running Rubocop
 
+# TODO module documentation
+module Viper
+  # TODO module documentation
+module Packages
+  # TODO module documentation
+module ViperRubocop
+  # TODO: class documentation
+class RubocopJSONFileNotFound < RuntimeError
+    def initialize path
+    super "#{path} could not be found"
+  end
+
+end
+
+end
+
+end
+
+end
+
+
 def load_cop_json buffer, path
+  raise Viper::Packages::ViperRubocop::RubocopJSONNotFound.new path unless File.exist?(path)
+
+  timestamp = File.mtime(path)
   buffer.ins "Rubocop analyzer results\n"
   contents = File.read(path)
   loaded = JSON.load(contents)
