@@ -4,6 +4,7 @@ def load_cop_json buffer, path
   buffer.ins "Rubocop analyzer results\n"
   contents = File.read(path)
   loaded = JSON.load(contents)
+  buffer.ins "Summary: offense count: #{loaded['summary']['offense_count']}\n"
   loaded['files'].reject { |e| e['offenses'].empty? }.each do |file|
     buffer.ins "F:#{file['path']}\n" 
     file['offenses'].each do |offense|
