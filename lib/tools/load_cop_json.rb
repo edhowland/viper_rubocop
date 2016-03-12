@@ -21,6 +21,7 @@ def load_cop_json buffer, path
 
   timestamp = File.mtime(path)
   buffer.ins "Rubocop analyzer results\n"
+  buffer.ins timestamp.localtime.strftime("Time: %Y/%m/%d %H:%M\n")
   contents = File.read(path)
   loaded = JSON.load(contents)
   buffer.ins "Summary: offense count: #{loaded['summary']['offense_count']}\n"
